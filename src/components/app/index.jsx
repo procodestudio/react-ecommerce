@@ -1,6 +1,7 @@
 import React from 'react';
-import './styles.css';
+import Homepage from '../homepage';
+import './styles.scss';
 
-const App = () => <div>E-commerce App</div>;
+const App = () => <Homepage />;
 
 export default App;
