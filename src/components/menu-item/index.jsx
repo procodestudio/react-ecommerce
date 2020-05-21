@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import './styles.scss';
 
 const MenuItem = ({ data: { title, imageUrl, size } }) => (
@@ -21,4 +22,4 @@ MenuItem.propTypes = {
   data: PropTypes.shape().isRequired,
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);
