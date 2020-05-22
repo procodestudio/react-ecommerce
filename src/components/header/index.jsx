@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { auth } from '../../firebase/utils';
+import { auth } from '../../firebase/auth';
 import './styles.scss';
 
 const signOut = () => {
