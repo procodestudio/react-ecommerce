@@ -36,10 +36,10 @@ class SignIn extends Component {
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
 
-        <form onSubmit={() => this.handleSubmit()}>
+        <form onSubmit={(evt) => this.handleSubmit(evt)}>
           <FormInput
             label="Email"
-            type="text"
+            type="email"
             id="email"
             required
             value={email}

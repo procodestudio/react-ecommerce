@@ -9,7 +9,6 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
         className="form-input"
         type="text"
         name={otherProps.id}
-        id={otherProps.id}
         onChange={handleChange}
         // eslint-disable-next-line
         {...otherProps}
