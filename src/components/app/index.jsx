@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../header';
 import Homepage from '../../pages/homepage';
@@ -40,6 +40,14 @@ class App extends Component {
     this.unsubscribeFromAuth();
   }
 
+  redirectIfLogged() {
+    const { currentUser } = this.props;
+
+    return currentUser
+      ? <Redirect to="/" />
+      : <SignRegister />;
+  }
+
   render() {
     return (
       <>
@@ -47,7 +55,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignRegister} />
+          <Route exact path="/signin" render={() => this.redirectIfLogged()} />
         </Switch>
       </>
     );
@@ -56,10 +64,19 @@ class App extends Component {
 
 App.propTypes = {
   setCurrentUserAction: PropTypes.func.isRequired,
+  currentUser: PropTypes.shape(),
 };
+
+App.defaultProps = {
+  currentUser: null,
+};
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
 
 const mapDispatchToProps = {
   setCurrentUserAction: (user) => setCurrentUser(user),
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -22,7 +22,6 @@ const Header = ({ currentUser }) => (
         currentUser
           ? <div tabIndex="0" role="button" className="option" onKeyDown={() => signOut()} onClick={() => signOut()}>SIGN OUT</div>
           : <Link className="option" to="/signin">SIGN IN</Link>
-
       }
     </div>
   </div>
