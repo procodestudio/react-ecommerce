@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import Header from '../header';
+import Header from '../../components/header';
 import Homepage from '../../pages/homepage';
 import ShopPage from '../../pages/shop';
 import SignRegister from '../../pages/sign-register';
@@ -12,6 +12,7 @@ import { auth } from '../../firebase/auth';
 import { createUserProfileDocument } from '../../firebase/actions';
 import setCurrentUser from '../../redux/actions/user';
 import selectCurrentUser from '../../redux/selectors/user';
+import CheckoutPage from '../../pages/checkout';
 
 import './styles.scss';
 
@@ -60,6 +61,7 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={ShopPage} />
           <Route exact path="/signin" render={() => this.redirectIfLogged()} />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </>
     );
