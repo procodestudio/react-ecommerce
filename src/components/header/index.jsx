@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/auth';
 import CartIcon from '../cart-icon';
 import CartDropdown from '../cart-dropdown';
+import selectCurrentUser from '../../redux/selectors/user';
+import { selectCartHidden } from '../../redux/selectors/cart';
+
 import './styles.scss';
 
 const signOut = () => {
@@ -40,9 +45,9 @@ Header.defaultProps = {
   currentUser: undefined,
 };
 
-const mapStateToProps = ({ user, cart }) => ({
-  currentUser: user.currentUser,
-  hidden: cart.hidden,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);
