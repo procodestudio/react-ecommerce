@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { clearItemFromCart } from '../../redux/actions/cart';
+
 import './styles.scss';
 
-const CheckoutItem = ({ item }) => {
+const CheckoutItem = ({ item, clearItem }) => {
   const {
     name, imageUrl, price, quantity,
   } = item;
@@ -15,13 +18,26 @@ const CheckoutItem = ({ item }) => {
       <span className="name">{name}</span>
       <span className="quantity">{quantity}</span>
       <span className="price">{price}</span>
-      <div className="remove-button">&#10005;</div>
+      <div
+        tabIndex="-2"
+        role="button"
+        onKeyDown={() => null}
+        className="remove-button"
+        onClick={() => clearItem(item)}
+      >
+        &#10005;
+      </div>
     </div>
   );
 };
 
 CheckoutItem.propTypes = {
   item: PropTypes.shape().isRequired,
+  clearItem: PropTypes.func.isRequired,
 };
 
-export default CheckoutItem;
+const mapDispatchToProps = {
+  clearItem: clearItemFromCart,
+};
+
+export default connect(null, mapDispatchToProps)(CheckoutItem);

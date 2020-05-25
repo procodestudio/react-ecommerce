@@ -10,7 +10,13 @@ import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import './styles.scss';
 
 const CartIcon = ({ toggleCartHiddenAction, itemCount }) => (
-  <div role="button" tabIndex="-1" onKeyDown={() => null} className="cart-icon" onClick={toggleCartHiddenAction}>
+  <div
+    role="button"
+    tabIndex="-1"
+    onKeyDown={() => null}
+    className="cart-icon"
+    onClick={() => toggleCartHiddenAction()}
+  >
     <ShoppingIcon className="shopping-icon" />
     <span className="item-count">{ itemCount }</span>
   </div>
@@ -30,7 +36,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = {
-  toggleCartHiddenAction: () => toggleCartHidden(),
+  toggleCartHiddenAction: toggleCartHidden,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

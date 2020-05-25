@@ -82,7 +82,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = {
-  setCurrentUserAction: (user) => setCurrentUser(user),
+  setCurrentUserAction: setCurrentUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
