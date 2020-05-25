@@ -9,9 +9,19 @@ const addItemToCart = (item) => ({
   payload: item,
 });
 
+const removeItemFromCart = (item) => ({
+  type: types.REMOVE_ITEM_FROM_CART,
+  payload: item,
+});
+
 const clearItemFromCart = (item) => ({
   type: types.CLEAR_ITEM_FROM_CART,
   payload: item,
 });
 
-export { toggleCartHidden, addItemToCart, clearItemFromCart };
+export {
+  toggleCartHidden,
+  addItemToCart,
+  removeItemFromCart,
+  clearItemFromCart,
+};
