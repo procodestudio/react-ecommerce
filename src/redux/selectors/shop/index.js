@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import slugify from 'react-slugify';
 
 const selectShop = (state) => state.shop;
 
@@ -8,9 +7,14 @@ const selectCollections = createSelector(
   (shop) => shop.collections,
 );
 
-const selectCollection = (slug) => createSelector(
+const selectCollectionsOverview = createSelector(
   [selectCollections],
-  (collections) => collections.find((item) => slugify(item.title) === slug),
+  (collections) => Object.keys(collections).map((key) => collections[key]),
 );
 
-export { selectCollections, selectCollection };
+const selectCollection = (slug) => createSelector(
+  [selectCollections],
+  (collections) => collections[slug],
+);
+
+export { selectCollectionsOverview, selectCollection };
