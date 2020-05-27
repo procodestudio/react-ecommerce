@@ -1,10 +1,17 @@
 import React from 'react';
+import slugify from 'react-slugify';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import './styles.scss';
 
-const MenuItem = ({ data: { title, imageUrl, size } }) => (
-  <div className={`menu-item ${size}`}>
+const MenuItem = ({ history, data: { title, imageUrl, size } }) => (
+  <div
+    onClick={() => history.push(`shop/${slugify(title)}`)}
+    role="button"
+    tabIndex="-1"
+    onKeyDown={() => null}
+    className={`menu-item ${size}`}
+  >
     <div
       className="background-image"
       style={{
@@ -20,6 +27,7 @@ const MenuItem = ({ data: { title, imageUrl, size } }) => (
 
 MenuItem.propTypes = {
   data: PropTypes.shape().isRequired,
+  history: PropTypes.shape().isRequired,
 };
 
 export default withRouter(MenuItem);
