@@ -20,15 +20,15 @@ const signOut = () => {
 const Header = ({ currentUser, hidden }) => (
   <HeaderContainer>
     <LogoContainer to="/">
-      <Logo className="logo" />
+      <Logo />
     </LogoContainer>
     <OptionsContainer>
-      <OptionLink className="option" to="/shop">SHOP</OptionLink>
-      <OptionLink className="option" to="/shop">CONTACT</OptionLink>
+      <OptionLink to="/shop">SHOP</OptionLink>
+      <OptionLink to="/shop">CONTACT</OptionLink>
       {
         currentUser
-          ? <OptionDiv tabIndex="0" role="button" className="option" onKeyDown={() => signOut()} onClick={() => signOut()}>SIGN OUT</OptionDiv>
-          : <OptionLink className="option" to="/signin">SIGN IN</OptionLink>
+          ? <OptionDiv tabIndex="0" role="button" onKeyDown={() => signOut()} onClick={() => signOut()}>SIGN OUT</OptionDiv>
+          : <OptionLink to="/signin">SIGN IN</OptionLink>
       }
       <CartIcon />
     </OptionsContainer>
