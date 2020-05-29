@@ -7,7 +7,7 @@ const WithSpinner = (WrappedComponent) => (({ isLoading, ...otherProps }) => (
       <SpinnerContainer />
     </SpinnerOverlay>
   ) : (
-    <WrappedComponent { ...otherProps } /> // eslint-disable-line
+    <WrappedComponent {...otherProps} /> // eslint-disable-line react/jsx-props-no-spreading
   )
 ));
 
