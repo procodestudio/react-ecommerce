@@ -7,12 +7,18 @@ import CollectionsOverview from '../../components/collections-overview';
 import CollectionPage from '../collection';
 import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/actions';
 import updateCollections from '../../redux/actions/shop';
+import WithSpinner from '../../components/with-spinner';
 
 class ShopPage extends React.Component {
   constructor() {
     super();
+    this.state = {
+      isLoading: true,
+    };
 
     this.unsubscribeFromSnapshot = null;
+    this.CollectionsOverviewWithLoader = WithSpinner(CollectionsOverview);
+    this.CollectionsPageWithLoader = WithSpinner(CollectionPage);
   }
 
   componentDidMount() {
@@ -20,17 +26,30 @@ class ShopPage extends React.Component {
     const collectionRef = firestore.collection('collections');
     collectionRef.onSnapshot((snapshot) => {
       updateCollectionsAction(convertCollectionsSnapshotToMap(snapshot));
+      this.setState({ isLoading: false });
     });
   }
 
   render() {
     const { match } = this.props;
+    const { isLoading } = this.state;
 
     return (
       <div className="shop-page">
         <ErrorBoundary>
-          <Route exact path={match.path} component={CollectionsOverview} />
-          <Route path={`${match.path}/:slug`} component={CollectionPage} />
+          <Route
+            exact
+            path={match.path}
+            render={
+              (props) => <this.CollectionsOverviewWithLoader isLoading={isLoading} {...props} /> // eslint-disable-line
+            }
+          />
+          <Route
+            path={`${match.path}/:slug`}
+            render={
+              (props) => <this.CollectionsPageWithLoader isLoading={isLoading} {...props} /> // eslint-disable-line
+            }
+          />
         </ErrorBoundary>
       </div>
     );
