@@ -22,4 +22,14 @@ const selectIsCollectionFecthing = createSelector(
   (shop) => shop.isFetching,
 );
 
-export { selectCollectionsOverview, selectCollection, selectIsCollectionFecthing };
+const selectIsCollectionLoaded = createSelector(
+  [selectShop],
+  (shop) => Object.keys(shop.collections).length > 0,
+);
+
+export {
+  selectCollectionsOverview,
+  selectCollection,
+  selectIsCollectionFecthing,
+  selectIsCollectionLoaded,
+};

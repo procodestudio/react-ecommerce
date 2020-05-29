@@ -1,7 +1,7 @@
 import types from '../../actions/types';
 
 const INITIAL_STATE = {
-  collections: [],
+  collections: {},
   isFetching: false,
   errorMessage: undefined,
 };
