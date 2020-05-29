@@ -43,9 +43,9 @@ const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
 };
 
 const convertCollectionsSnapshotToMap = (collections) => {
-  const transformedCollection = collections.docs;
+  const { docs } = collections;
 
-  return transformedCollection.map((doc) => {
+  const transformedCollection = docs.map((doc) => {
     const { title, items } = doc.data();
 
     return {
@@ -55,6 +55,11 @@ const convertCollectionsSnapshotToMap = (collections) => {
       title,
     };
   });
+
+  return transformedCollection.reduce((acc, collection) => {
+    acc[collection.title.toLowerCase()] = collection;
+    return acc;
+  }, {});
 };
 
 export {
