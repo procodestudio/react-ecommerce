@@ -1,3 +1,4 @@
+import slugify from 'react-slugify';
 import firebase from './index';
 
 const firestore = firebase.firestore();
@@ -29,7 +30,36 @@ const createUserProfileDocument = async (userAuth, additionalData) => {
   return null;
 };
 
+const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return batch.commit();
+};
+
+const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs;
+
+  return transformedCollection.map((doc) => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: slugify(title),
+      id: doc.id,
+      items,
+      title,
+    };
+  });
+};
+
 export {
   firestore,
   createUserProfileDocument,
+  addCollectionAndDocuments,
+  convertCollectionsSnapshotToMap,
 };
