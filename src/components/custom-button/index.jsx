@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
+import CustomButtomContainer from './styles';
 
 const CustomButtom = ({ children, theme, ...otherProps }) => (
   /* eslint-disable react/button-has-type, react/jsx-props-no-spreading */
-  <button className={`custom-button ${theme}`} {...otherProps}>
+  <CustomButtomContainer theme={theme} className="custom-button" {...otherProps}>
     {children}
-  </button>
+  </CustomButtomContainer>
   /* eslint-enable react/button-has-type, react/jsx-props-no-spreading */
 );
 
