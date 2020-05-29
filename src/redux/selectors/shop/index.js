@@ -17,4 +17,9 @@ const selectCollection = (slug) => createSelector(
   (collections) => collections[slug],
 );
 
-export { selectCollectionsOverview, selectCollection };
+const selectIsCollectionFecthing = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching,
+);
+
+export { selectCollectionsOverview, selectCollection, selectIsCollectionFecthing };
