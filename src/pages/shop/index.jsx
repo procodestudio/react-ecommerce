@@ -41,13 +41,15 @@ class ShopPage extends React.Component {
             exact
             path={match.path}
             render={
-              (props) => <this.CollectionsOverviewWithLoader isLoading={isLoading} {...props} /> // eslint-disable-line
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              (props) => <this.CollectionsOverviewWithLoader isLoading={isLoading} {...props} />
             }
           />
           <Route
             path={`${match.path}/:slug`}
             render={
-              (props) => <this.CollectionsPageWithLoader isLoading={isLoading} {...props} /> // eslint-disable-line
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              (props) => <this.CollectionsPageWithLoader isLoading={isLoading} {...props} />
             }
           />
         </ErrorBoundary>
