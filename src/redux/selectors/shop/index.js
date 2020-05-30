@@ -17,4 +17,19 @@ const selectCollection = (slug) => createSelector(
   (collections) => collections[slug],
 );
 
-export { selectCollectionsOverview, selectCollection };
+const selectIsCollectionFecthing = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching,
+);
+
+const selectIsCollectionLoaded = createSelector(
+  [selectShop],
+  (shop) => Object.keys(shop.collections).length > 0,
+);
+
+export {
+  selectCollectionsOverview,
+  selectCollection,
+  selectIsCollectionFecthing,
+  selectIsCollectionLoaded,
+};

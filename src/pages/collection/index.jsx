@@ -29,5 +29,4 @@ const mapStateToProps = createStructuredSelector({
   collection: (state, ownProps) => selectCollection(ownProps.match.params.slug)(state),
 });
 
-
 export default connect(mapStateToProps)(CollectionPage);
